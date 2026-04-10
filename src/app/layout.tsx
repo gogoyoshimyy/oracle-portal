@@ -39,7 +39,13 @@ export default function RootLayout({
         <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-6">
           {children}
         </main>
-        <footer className="text-center py-6 text-sm" style={{ color: 'var(--text-light)' }}>
+        <footer className="text-center py-6 text-xs" style={{ color: 'var(--text-light)' }}>
+          <p className="mb-2">※ 当サイトは電話占いサービス等のアフィリエイト広告を含みます</p>
+          <p className="mb-2">
+            <a href="/about" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>運営情報</a>
+            <a href="/privacy" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>プライバシーポリシー</a>
+            <a href="/terms" style={{ color: 'var(--text-light)' }}>利用規約</a>
+          </p>
           <p>&copy; 2026 Oracle Portal - AI占いの館</p>
         </footer>
       </body>

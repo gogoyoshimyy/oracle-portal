@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${kw.title}の意味 - 夢占い`,
     description: kw.description,
-    keywords: [kw.title, '夢占い', `夢占い ${kw.title}`, ...kw.variations.slice(0, 3)],
+    keywords: [kw.title, '夢占い', `夢占い ${kw.title}`, ...kw.variations.slice(0, 3).map((v) => v.title)],
     openGraph: {
       title: `${kw.title}の意味 | Oracle Portal 夢占い`,
       description: kw.description,
@@ -54,7 +54,25 @@ export default async function DreamKeywordPage({ params }: Props) {
       <div className="glass-panel mb-6">
         <div className="text-center mb-6">
           <span className="text-5xl block mb-4">{kw.emoji}</span>
-          <h1 className="text-2xl font-bold gradient-text mb-2">{kw.title}の意味</h1>
+          <h1 className="text-2xl font-bold gradient-text mb-3">{kw.title}の意味</h1>
+          <div className="inline-block px-4 py-1 rounded-full mb-3" style={{
+            background: kw.luck === '大吉' ? 'linear-gradient(120deg, #e8d5b5, #d4a5b6)' :
+                        kw.luck === '吉' ? 'linear-gradient(120deg, #caffbf, #a0c4ff)' :
+                        kw.luck === '中吉' ? 'linear-gradient(120deg, #ffd6a5, #e8d5b5)' :
+                        kw.luck === '注意' ? 'linear-gradient(120deg, #ffadad, #b5a4d6)' :
+                        'linear-gradient(120deg, #b5a4d6, #d4a5b6)',
+            color: 'white',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            letterSpacing: '0.1em',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          }}>
+            {kw.luck === '大吉' ? '🌟 大吉' :
+             kw.luck === '吉' ? '✨ 吉' :
+             kw.luck === '中吉' ? '⭐ 中吉' :
+             kw.luck === '注意' ? '⚠️ 注意' :
+             '✨ 末吉'}
+          </div>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-light)' }}>
             {kw.description}
           </p>
@@ -92,21 +110,25 @@ export default async function DreamKeywordPage({ params }: Props) {
 
         {/* Variations */}
         <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--text-main)', borderBottom: '2px solid rgba(232,213,181,0.5)', paddingBottom: '0.5rem' }}>
-          パターン別の意味
+          パターン別の詳しい意味
         </h2>
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-col gap-3 mb-6">
           {kw.variations.map((v, i) => (
-            <span
+            <div
               key={i}
-              className="px-3 py-2 rounded-full text-xs"
+              className="p-4 rounded-2xl"
               style={{
-                background: 'rgba(181,164,214,0.1)',
-                color: '#7a6f8a',
+                background: 'rgba(255,255,255,0.5)',
                 border: '1px solid rgba(181,164,214,0.2)',
               }}
             >
-              {v}
-            </span>
+              <h4 className="text-sm font-bold mb-2" style={{ color: '#b5a4d6' }}>
+                {v.title}
+              </h4>
+              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-main)', lineHeight: '1.9' }}>
+                {v.meaning}
+              </p>
+            </div>
           ))}
         </div>
 
@@ -139,7 +161,7 @@ export default async function DreamKeywordPage({ params }: Props) {
 
       {/* Phone fortune affiliate */}
       <div className="mb-6">
-        <PhoneFortuneAffiliate context="keyword" />
+        <PhoneFortuneAffiliate context="keyword" category="夢" />
       </div>
 
       {/* Ad slot */}

@@ -34,55 +34,39 @@ export default function Header() {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2"
+          className="p-2"
+          aria-label="メニューを開く"
           style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-main)' }}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-
-        <nav className="hidden md:flex gap-4">
-          {fortuneServices.slice(0, 5).map((s) => (
-            <Link
-              key={s.id}
-              href={s.path}
-              className="text-sm no-underline hover:opacity-70 transition-opacity"
-              style={{ color: 'var(--text-main)', textDecoration: 'none' }}
-            >
-              {s.icon} {s.name}
-            </Link>
-          ))}
-          <Link
-            href="/"
-            className="text-sm no-underline"
-            style={{ color: 'var(--text-light)', textDecoration: 'none' }}
-          >
-            もっと見る →
-          </Link>
-        </nav>
       </div>
 
       {isOpen && (
         <nav
-          className="md:hidden px-4 pb-4"
+          className="px-4 pb-4"
           style={{ borderTop: '1px solid rgba(212,165,182,0.2)' }}
         >
-          <div className="grid grid-cols-3 gap-2 pt-3">
-            {fortuneServices.map((s) => (
-              <Link
-                key={s.id}
-                href={s.path}
-                onClick={() => setIsOpen(false)}
-                className="text-center py-3 rounded-xl text-sm no-underline transition-all hover:scale-105"
-                style={{
-                  background: `${s.color}15`,
-                  color: 'var(--text-main)',
-                  textDecoration: 'none',
-                }}
-              >
-                <span className="text-xl block mb-1">{s.icon}</span>
-                {s.name}
-              </Link>
-            ))}
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-2 pt-3">
+              {fortuneServices.map((s) => (
+                <Link
+                  key={s.id}
+                  href={s.path}
+                  onClick={() => setIsOpen(false)}
+                  className="text-center py-3 rounded-xl text-sm no-underline transition-all hover:scale-105"
+                  style={{
+                    background: `${s.color}15`,
+                    color: 'var(--text-main)',
+                    textDecoration: 'none',
+                    border: `1px solid ${s.color}30`,
+                  }}
+                >
+                  <span className="text-xl block mb-1">{s.icon}</span>
+                  {s.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </nav>
       )}

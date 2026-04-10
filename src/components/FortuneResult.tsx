@@ -7,6 +7,8 @@ import { fortuneServices } from '@/lib/fortunes';
 import AdBanner from './AdBanner';
 import PhoneFortuneAffiliate from './PhoneFortuneAffiliate';
 
+type AffiliateCategory = '恋愛' | '仕事' | '人生' | '夢' | '相性' | '前世' | '総合';
+
 interface FortuneResultProps {
   title: string;
   headline: string;
@@ -16,6 +18,18 @@ interface FortuneResultProps {
   onReset: () => void;
   currentServiceId: string;
 }
+
+const SERVICE_CATEGORY: Record<string, AffiliateCategory> = {
+  dream: '夢',
+  tarot: '人生',
+  numerology: '人生',
+  horoscope: '人生',
+  compatibility: '相性',
+  'name-fortune': '人生',
+  'past-life': '前世',
+  birthday: '人生',
+  color: '人生',
+};
 
 function formatText(text: string) {
   return (
@@ -143,7 +157,7 @@ export default function FortuneResult({
         </div>
       </motion.div>
 
-      <PhoneFortuneAffiliate context="result" />
+      <PhoneFortuneAffiliate context="result" category={SERVICE_CATEGORY[currentServiceId] || '総合'} />
 
       <AdBanner />
 
