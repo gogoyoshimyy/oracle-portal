@@ -10,6 +10,7 @@ import PhoneFortuneAffiliate from './PhoneFortuneAffiliate';
 import { saveHistoryEntry, toggleFavorite } from '@/lib/history';
 import { isPremium, PREMIUM_PRICE } from '@/lib/premium';
 import { exportToPDF } from '@/lib/pdf-export';
+import ShareImage from './ShareImage';
 
 type AffiliateCategory = '恋愛' | '仕事' | '人生' | '夢' | '相性' | '前世' | '総合';
 
@@ -211,6 +212,15 @@ export default function FortuneResult({
 
         {/* アクションボタン群 */}
         <div className="mt-6 flex gap-2 justify-center flex-wrap">
+          {service && (
+            <ShareImage
+              serviceId={currentServiceId}
+              serviceName={service.name}
+              title={title}
+              headline={headline}
+            />
+          )}
+
           <button
             onClick={handleFavorite}
             className="px-4 py-2 rounded-full text-sm font-bold cursor-pointer transition-all"

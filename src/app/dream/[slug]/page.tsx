@@ -17,6 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const kw = dreamKeywords.find((k) => k.slug === slug);
   if (!kw) return {};
 
+  const ogImage = `/api/og?service=dream&title=${encodeURIComponent(kw.title)}&headline=${encodeURIComponent(kw.description.slice(0, 60))}`;
+
   return {
     title: `${kw.title}の意味 - 夢占い`,
     description: kw.description,
@@ -25,6 +27,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${kw.title}の意味 | Oracle Portal 夢占い`,
       description: kw.description,
       type: 'article',
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${kw.title}の意味` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${kw.title}の意味`,
+      description: kw.description,
+      images: [ogImage],
     },
   };
 }

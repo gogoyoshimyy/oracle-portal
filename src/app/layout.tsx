@@ -15,11 +15,20 @@ export const metadata: Metadata = {
     siteName: 'Oracle Portal - AI占いの館',
     title: 'Oracle Portal - AI占いの館',
     description: '9つのAI占いであなたの運命を読み解く。全て無料。',
+    images: [
+      {
+        url: '/api/og?service=dream&headline=AIがあなたの運命を読み解く&title=Oracle Portal',
+        width: 1200,
+        height: 630,
+        alt: 'Oracle Portal - AI占いの館',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Oracle Portal - AI占いの館',
     description: '9つのAI占いであなたの運命を読み解く。全て無料。',
+    images: ['/api/og?service=dream&headline=AIがあなたの運命を読み解く&title=Oracle Portal'],
   },
   robots: {
     index: true,
