@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import FortuneIcon from '@/components/FortuneIcon';
 import { callFortuneAPI } from '@/lib/fortune-api';
 
 export default function NameFortunePage() {
@@ -67,7 +68,10 @@ export default function NameFortunePage() {
     <div className="w-full max-w-xl mx-auto flex flex-col gap-6">
       <motion.div initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
         <div className="text-center mb-2">
-          <h1 className="text-3xl font-bold gradient-text">✍️ 姓名判断</h1>
+          <div className="flex justify-center mb-3">
+            <FortuneIcon iconKey="feather" size={40} color="var(--accent)" strokeWidth={1.3} />
+          </div>
+          <h1 className="text-3xl font-bold gradient-text font-mincho" style={{ letterSpacing: '0.1em' }}>姓名判断</h1>
           <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
             お名前の画数から運勢を読み解きます
           </p>

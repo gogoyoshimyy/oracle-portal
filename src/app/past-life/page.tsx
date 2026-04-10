@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import FortuneIcon from '@/components/FortuneIcon';
 import { callFortuneAPI } from '@/lib/fortune-api';
 
 const INTUITIONS = [
@@ -65,7 +66,10 @@ export default function PastLifePage() {
     <div className="w-full max-w-xl mx-auto flex flex-col gap-6">
       <motion.div initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
         <div className="text-center mb-2">
-          <h1 className="text-3xl font-bold gradient-text">🔮 前世占い</h1>
+          <div className="flex justify-center mb-3">
+            <FortuneIcon iconKey="crystal" size={40} color="var(--accent)" strokeWidth={1.3} />
+          </div>
+          <h1 className="text-3xl font-bold gradient-text font-mincho" style={{ letterSpacing: '0.1em' }}>前世占い</h1>
           <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
             あなたの前世を霊視します
           </p>

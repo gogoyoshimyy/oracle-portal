@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Moon, Stars, Sparkles } from 'lucide-react';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import FortuneIcon from '@/components/FortuneIcon';
 import { callFortuneAPI } from '@/lib/fortune-api';
 
 const emotions = [
@@ -59,12 +60,13 @@ export default function DreamPage() {
     <div className="w-full max-w-xl mx-auto flex flex-col gap-6">
       <motion.div initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
         <div className="text-center mb-2">
-          <h1 className="text-3xl font-bold gradient-text flex items-center justify-center gap-3">
-            <Moon size={28} color="#b5a4d6" />
+          <div className="flex justify-center mb-3">
+            <FortuneIcon iconKey="moon" size={40} color="var(--accent)" strokeWidth={1.3} />
+          </div>
+          <h1 className="text-3xl font-bold gradient-text font-mincho" style={{ letterSpacing: '0.1em' }}>
             夢占い
-            <Stars size={28} color="#d4a5b6" />
           </h1>
-          <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
+          <p className="text-sm mt-2" style={{ color: 'var(--text-sub)', fontFamily: "'Shippori Mincho', serif" }}>
             あなたの深層心理を紐解きます
           </p>
         </div>

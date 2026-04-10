@@ -2,21 +2,21 @@
 @import "tailwindcss";
 
 :root {
-  /* くすみカラーパレット - 神秘性と上品さを両立 */
-  --primary: #8b6f8e;        /* くすみパープル */
-  --primary-light: #b89bbb;
-  --secondary: #7b6e8b;      /* 深いダスティパープル */
-  --secondary-light: #9d8fb0;
-  --accent: #a08756;         /* くすみゴールド */
-  --accent-light: #c4ad7e;
-  --text-main: #2d2935;      /* 深いネイビー寄り */
-  --text-sub: #4d4858;
-  --text-light: #6e6878;
-  --bg-start: #f5f1ec;       /* オフホワイト・ウォーム */
-  --bg-end: #ebe4d8;         /* ベージュ */
-  --glass-bg: rgba(255, 252, 246, 0.75);
-  --glass-border: rgba(255, 250, 240, 0.9);
-  --shadow: rgba(45, 41, 53, 0.12);
+  /* くすみカラーパレット - 神秘性と可読性を両立 */
+  --primary: #7a5e7d;        /* やや濃いくすみパープル */
+  --primary-light: #9d83a0;
+  --secondary: #6a5d7a;      /* 濃いダスティパープル */
+  --secondary-light: #877a97;
+  --accent: #8a6e3d;         /* 濃いくすみゴールド（コントラスト確保） */
+  --accent-light: #b8995f;
+  --text-main: #1f1c28;      /* ほぼ黒に近いネイビー（AA合格） */
+  --text-sub: #3a3548;       /* より濃く */
+  --text-light: #524d62;     /* AA合格レベルに */
+  --bg-start: #f7f3ee;       /* オフホワイト・ウォーム */
+  --bg-end: #ede6da;         /* ベージュ */
+  --glass-bg: rgba(255, 253, 248, 0.85);
+  --glass-border: rgba(160, 135, 86, 0.18);
+  --shadow: rgba(31, 28, 40, 0.15);
 }
 
 @theme inline {
@@ -30,20 +30,28 @@
 body {
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500; /* 明朝の細さを補うため標準を500に */
   background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
   background-size: 400% 400%;
   animation: gradientBG 20s ease infinite;
   color: var(--text-main);
   min-height: 100vh;
   position: relative;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* 見出し・タイトルは明朝系 */
+/* 見出し・タイトルは明朝系（より太く） */
 .font-mincho,
 h1,
 .hero-title,
 .gradient-text {
   font-family: 'Shippori Mincho', 'Noto Serif JP', serif !important;
+  font-weight: 600;
+}
+
+h1.font-mincho,
+.hero-title {
+  font-weight: 700;
 }
 
 /* 控えめな粒子表現 - 神秘性は保ちつつ目障りにならない */

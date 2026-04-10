@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import FortuneIcon from '@/components/FortuneIcon';
 import { callFortuneAPI } from '@/lib/fortune-api';
 
 const THEMES = [
@@ -78,8 +79,13 @@ export default function TarotPage() {
     <div className="w-full max-w-xl mx-auto flex flex-col gap-6">
       <motion.div initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
         <div className="text-center mb-2">
-          <h1 className="text-3xl font-bold gradient-text">🃏 タロット占い</h1>
-          <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
+          <div className="flex justify-center mb-3">
+            <FortuneIcon iconKey="tarot" size={40} color="var(--accent)" strokeWidth={1.3} />
+          </div>
+          <h1 className="text-3xl font-bold gradient-text font-mincho" style={{ letterSpacing: '0.1em' }}>
+            タロット占い
+          </h1>
+          <p className="text-sm mt-2" style={{ color: 'var(--text-sub)', fontFamily: "'Shippori Mincho', serif" }}>
             神秘のカードがあなたを導きます
           </p>
         </div>
