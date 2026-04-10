@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { dreamKeywords } from '@/lib/dream-keywords';
 import type { Metadata } from 'next';
+import PhoneFortuneAffiliate from '@/components/PhoneFortuneAffiliate';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -134,6 +135,11 @@ export default async function DreamKeywordPage({ params }: Props) {
         <Link href="/dream" className="primary-btn" style={{ textDecoration: 'none' }}>
           AIで夢占い →
         </Link>
+      </div>
+
+      {/* Phone fortune affiliate */}
+      <div className="mb-6">
+        <PhoneFortuneAffiliate context="keyword" />
       </div>
 
       {/* Ad slot */}

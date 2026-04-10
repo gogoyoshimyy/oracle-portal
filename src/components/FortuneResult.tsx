@@ -5,6 +5,7 @@ import { Share2, RefreshCw, Sparkles, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { fortuneServices } from '@/lib/fortunes';
 import AdBanner from './AdBanner';
+import PhoneFortuneAffiliate from './PhoneFortuneAffiliate';
 
 interface FortuneResultProps {
   title: string;
@@ -141,6 +142,8 @@ export default function FortuneResult({
           </button>
         </div>
       </motion.div>
+
+      <PhoneFortuneAffiliate context="result" />
 
       <AdBanner />
 
