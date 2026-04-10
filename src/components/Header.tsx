@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Sparkles, BookOpen, Crown } from 'lucide-react';
+import { Menu, X, Sparkles, BookOpen, Crown, User, LogIn } from 'lucide-react';
 import { fortuneServices } from '@/lib/fortunes';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <header
@@ -49,6 +51,34 @@ export default function Header() {
           >
             <Crown size={20} />
           </Link>
+          {user ? (
+            <Link
+              href="/account"
+              className="p-2 no-underline"
+              aria-label="マイページ"
+              style={{ color: 'var(--text-main)', textDecoration: 'none' }}
+            >
+              <div
+                className="w-7 h-7 rounded-full flex items-center justify-center"
+                style={{ background: 'linear-gradient(135deg, #b5a4d6, #d4a5b6)', color: 'white' }}
+              >
+                <User size={14} />
+              </div>
+            </Link>
+          ) : (
+            <Link
+              href="/auth/signup"
+              className="px-3 py-1.5 rounded-full text-xs font-bold no-underline hidden sm:inline-flex items-center gap-1"
+              style={{
+                background: 'linear-gradient(120deg, #b5a4d6, #d4a5b6)',
+                color: 'white',
+                textDecoration: 'none',
+                fontFamily: "'Zen Maru Gothic', sans-serif",
+              }}
+            >
+              <LogIn size={12} /> 無料登録
+            </Link>
+          )}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2"
@@ -85,6 +115,22 @@ export default function Header() {
                 </Link>
               ))}
             </div>
+
+            {!user && (
+              <Link
+                href="/auth/signup"
+                onClick={() => setIsOpen(false)}
+                className="w-full mt-3 py-3 text-center text-sm font-bold no-underline rounded-2xl block sm:hidden"
+                style={{
+                  background: 'linear-gradient(120deg, #b5a4d6, #d4a5b6)',
+                  color: 'white',
+                  textDecoration: 'none',
+                  fontFamily: "'Zen Maru Gothic', sans-serif",
+                }}
+              >
+                ✨ 無料会員登録（30秒）
+              </Link>
+            )}
           </div>
         </nav>
       )}

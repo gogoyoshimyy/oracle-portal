@@ -11,6 +11,7 @@ import { saveHistoryEntry, toggleFavorite } from '@/lib/history';
 import { isPremium, PREMIUM_PRICE } from '@/lib/premium';
 import { exportToPDF } from '@/lib/pdf-export';
 import ShareImage from './ShareImage';
+import { useAuth } from '@/contexts/AuthContext';
 
 type AffiliateCategory = '恋愛' | '仕事' | '人生' | '夢' | '相性' | '前世' | '総合';
 
@@ -60,6 +61,7 @@ export default function FortuneResult({
   const [savedId, setSavedId] = useState<string | null>(null);
   const [isFavorited, setIsFavorited] = useState(false);
   const [premium, setPremium] = useState(false);
+  const { user } = useAuth();
 
   const service = fortuneServices.find((s) => s.id === currentServiceId);
 
@@ -267,6 +269,46 @@ export default function FortuneResult({
           </button>
         </div>
       </motion.div>
+
+      {/* 未ログインユーザー向け 無料会員登録CTA */}
+      {!user && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-3xl p-5 text-center"
+          style={{
+            background: 'linear-gradient(135deg, rgba(202,255,191,0.4), rgba(160,196,255,0.4))',
+            border: '1px solid rgba(160,196,255,0.5)',
+            boxShadow: '0 4px 16px rgba(160,196,255,0.2)',
+          }}
+        >
+          <Sparkles size={24} color="#7ba7d4" className="mx-auto mb-2" />
+          <h3 className="text-base font-bold mb-1" style={{ color: 'var(--text-main)' }}>
+            占いの記録を残しませんか？
+          </h3>
+          <p className="text-xs mb-3" style={{ color: 'var(--text-main)' }}>
+            無料会員登録で <strong>クラウド保存</strong>・<strong>複数デバイス同期</strong>・<strong>毎朝の運勢メール</strong>
+          </p>
+          <Link
+            href={`/auth/signup?next=${encodeURIComponent(typeof window !== 'undefined' ? window.location.pathname : '/')}`}
+            className="inline-block px-6 py-2.5 rounded-full text-sm font-bold no-underline"
+            style={{
+              background: 'linear-gradient(120deg, #7ba7d4, #b5a4d6)',
+              color: 'white',
+              textDecoration: 'none',
+              boxShadow: '0 4px 12px rgba(123,167,212,0.4)',
+            }}
+          >
+            無料で会員登録する（30秒）
+          </Link>
+          <p className="text-xs mt-2" style={{ color: 'var(--text-light)' }}>
+            すでに登録済みの方は{' '}
+            <Link href="/auth/signin" style={{ color: '#7ba7d4' }}>
+              ログイン
+            </Link>
+          </p>
+        </motion.div>
+      )}
 
       {/* プレミアム誘導 */}
       {!premium && (

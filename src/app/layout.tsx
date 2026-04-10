@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 export const metadata: Metadata = {
   title: {
@@ -44,13 +45,16 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-6">
-          {children}
-        </main>
+        <AuthProvider>
+          <Header />
+          <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-6">
+            {children}
+          </main>
         <footer className="text-center py-6 text-xs" style={{ color: 'var(--text-light)' }}>
           <p className="mb-2">※ 当サイトは電話占いサービス等のアフィリエイト広告を含みます</p>
           <p className="mb-2">
+            <a href="/auth/signup" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>会員登録</a>
+            <a href="/auth/signin" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>ログイン</a>
             <a href="/history" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>占いの記録</a>
             <a href="/premium" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>プレミアム</a>
             <a href="/about" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>運営情報</a>
@@ -59,6 +63,7 @@ export default function RootLayout({
           </p>
           <p>&copy; 2026 Oracle Portal - AI占いの館</p>
         </footer>
+        </AuthProvider>
       </body>
     </html>
   );
