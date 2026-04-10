@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { fortuneServices } from '@/lib/fortunes';
 import { dreamKeywords } from '@/lib/dream-keywords';
 import { Sparkles, TrendingUp, Star } from 'lucide-react';
+import DailyHoroscope from '@/components/DailyHoroscope';
 
 const POPULAR_IDS = ['dream', 'tarot', 'horoscope'];
 
@@ -44,6 +45,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Daily horoscope - retention driver */}
+      <DailyHoroscope />
 
       {/* Fortune services grid */}
       <section className="w-full max-w-3xl">
