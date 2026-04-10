@@ -1,21 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Quicksand:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --primary: #c47795;        /* より濃いピンク（コントラスト向上） */
-  --primary-light: #d4a5b6;
-  --secondary: #8b78b8;      /* より濃い紫 */
-  --secondary-light: #b5a4d6;
-  --accent: #b08a3e;         /* より濃いゴールド */
-  --accent-light: #e8d5b5;
-  --text-main: #3d3947;      /* より濃く（読みやすさ向上） */
-  --text-sub: #5a5560;
-  --text-light: #6e6878;     /* より濃く */
-  --bg-start: #fdfbf7;
-  --bg-end: #fceef5;
-  --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.9);
-  --shadow: rgba(181, 164, 214, 0.2);
+  /* くすみカラーパレット - 神秘性と上品さを両立 */
+  --primary: #8b6f8e;        /* くすみパープル */
+  --primary-light: #b89bbb;
+  --secondary: #7b6e8b;      /* 深いダスティパープル */
+  --secondary-light: #9d8fb0;
+  --accent: #a08756;         /* くすみゴールド */
+  --accent-light: #c4ad7e;
+  --text-main: #2d2935;      /* 深いネイビー寄り */
+  --text-sub: #4d4858;
+  --text-light: #6e6878;
+  --bg-start: #f5f1ec;       /* オフホワイト・ウォーム */
+  --bg-end: #ebe4d8;         /* ベージュ */
+  --glass-bg: rgba(255, 252, 246, 0.75);
+  --glass-border: rgba(255, 250, 240, 0.9);
+  --shadow: rgba(45, 41, 53, 0.12);
 }
 
 @theme inline {
@@ -28,7 +29,7 @@
 
 body {
   margin: 0;
-  font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
   background-size: 400% 400%;
   animation: gradientBG 20s ease infinite;
@@ -37,7 +38,15 @@ body {
   position: relative;
 }
 
-/* 神秘的な星々の装飾 */
+/* 見出し・タイトルは明朝系 */
+.font-mincho,
+h1,
+.hero-title,
+.gradient-text {
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif !important;
+}
+
+/* 控えめな粒子表現 - 神秘性は保ちつつ目障りにならない */
 body::before {
   content: '';
   position: fixed;
@@ -46,23 +55,15 @@ body::before {
   right: 0;
   bottom: 0;
   background-image:
-    radial-gradient(2px 2px at 20% 30%, rgba(232, 213, 181, 0.5), transparent),
-    radial-gradient(1.5px 1.5px at 60% 70%, rgba(212, 165, 182, 0.5), transparent),
-    radial-gradient(1px 1px at 80% 20%, rgba(181, 164, 214, 0.5), transparent),
-    radial-gradient(2px 2px at 40% 90%, rgba(232, 213, 181, 0.4), transparent),
-    radial-gradient(1.5px 1.5px at 90% 60%, rgba(212, 165, 182, 0.4), transparent),
-    radial-gradient(1px 1px at 10% 80%, rgba(181, 164, 214, 0.5), transparent);
+    radial-gradient(1px 1px at 25% 35%, rgba(160, 135, 86, 0.25), transparent),
+    radial-gradient(1px 1px at 75% 65%, rgba(139, 111, 142, 0.25), transparent),
+    radial-gradient(1px 1px at 50% 15%, rgba(160, 135, 86, 0.2), transparent),
+    radial-gradient(1px 1px at 15% 85%, rgba(139, 111, 142, 0.2), transparent);
   background-repeat: repeat;
-  background-size: 300px 300px;
+  background-size: 500px 500px;
   pointer-events: none;
   z-index: 1;
-  animation: starsBG 60s linear infinite;
-}
-
-@keyframes starsBG {
-  0% { transform: translateY(0) translateX(0); opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-300px) translateX(-50px); opacity: 0.6; }
+  opacity: 0.8;
 }
 
 @keyframes gradientBG {
@@ -107,50 +108,52 @@ h3 { font-size: clamp(1rem, 2.5vw, 1.15rem); line-height: 1.6; }
 
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 32px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(160, 135, 86, 0.15);
+  border-radius: 8px;
   padding: 2rem;
-  box-shadow: 0 10px 40px var(--shadow);
+  box-shadow: 0 4px 24px var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-panel:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 50px var(--shadow);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--shadow);
 }
 
 .gradient-text {
-  background: linear-gradient(to right, #b5a4d6, #d4a5b6);
+  background: linear-gradient(135deg, var(--text-main) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .primary-btn {
-  background: linear-gradient(120deg, var(--secondary), var(--primary));
-  color: white;
-  border: none;
-  padding: 1rem 2.25rem;
-  min-height: 48px; /* タップしやすい最小高さ */
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  background: linear-gradient(135deg, var(--text-main) 0%, #4d4858 100%);
+  color: #f5f1ec;
+  border: 1px solid var(--accent);
+  padding: 1rem 2.5rem;
+  min-height: 48px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(196, 119, 149, 0.5);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(45, 41, 53, 0.2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  letter-spacing: 0.05em;
-  font-family: 'Zen Maru Gothic', sans-serif;
+  letter-spacing: 0.2em;
+  font-family: 'Shippori Mincho', serif;
 }
 
 .primary-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--accent) 0%, #b89766 100%);
+  border-color: var(--text-main);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 165, 182, 0.5);
+  box-shadow: 0 8px 28px rgba(160, 135, 86, 0.35);
 }
 
 .primary-btn:disabled {
@@ -159,44 +162,48 @@ h3 { font-size: clamp(1rem, 2.5vw, 1.15rem); line-height: 1.6; }
 }
 
 .secondary-btn {
-  background: white;
+  background: rgba(255, 252, 246, 0.7);
   color: var(--text-main);
-  border: 1px solid #ddd;
-  padding: 0.85rem 2rem;
-  border-radius: 50px;
-  font-size: 1.05rem;
-  font-weight: 700;
+  border: 1px solid var(--accent);
+  padding: 0.95rem 2rem;
+  min-height: 48px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Shippori Mincho', serif;
+  letter-spacing: 0.15em;
 }
 
 .secondary-btn:hover {
+  background: var(--accent);
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(160, 135, 86, 0.25);
 }
 
-textarea, input[type="text"], input[type="date"] {
+textarea, input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
   width: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid transparent;
-  border-radius: 20px;
+  background: rgba(255, 252, 246, 0.85);
+  border: 1px solid rgba(160, 135, 86, 0.3);
+  border-radius: 4px;
   padding: 1rem;
   color: var(--text-main);
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
-textarea:focus, input[type="text"]:focus, input[type="date"]:focus {
+textarea:focus, input[type="text"]:focus, input[type="date"]:focus, input[type="email"]:focus, input[type="password"]:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: var(--accent);
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(212, 165, 182, 0.15);
+  box-shadow: 0 0 0 3px rgba(160, 135, 86, 0.15);
 }
 
 ::-webkit-scrollbar {

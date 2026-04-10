@@ -11,6 +11,7 @@ import { saveHistoryEntry, toggleFavorite } from '@/lib/history';
 import { isPremium, PREMIUM_PRICE } from '@/lib/premium';
 import { exportToPDF } from '@/lib/pdf-export';
 import ShareImage from './ShareImage';
+import FortuneIcon from './FortuneIcon';
 import { useAuth } from '@/contexts/AuthContext';
 
 type AffiliateCategory = '恋愛' | '仕事' | '人生' | '夢' | '相性' | '前世' | '総合';
@@ -71,7 +72,7 @@ export default function FortuneResult({
     const entry = saveHistoryEntry({
       serviceId: currentServiceId,
       serviceName: service.name,
-      serviceIcon: service.icon,
+      serviceIcon: service.emoji,
       title,
       headline,
       result: { sections, keywords },
@@ -383,15 +384,16 @@ export default function FortuneResult({
             <Link
               key={s.id}
               href={s.path}
-              className="text-center py-3 rounded-xl text-sm no-underline transition-all hover:scale-105"
+              className="text-center py-3 rounded-xl text-sm no-underline transition-all hover:scale-105 flex flex-col items-center gap-1"
               style={{
                 background: `${s.color}15`,
                 color: 'var(--text-main)',
                 textDecoration: 'none',
+                fontFamily: "'Shippori Mincho', serif",
               }}
             >
-              <span className="text-xl block mb-1">{s.icon}</span>
-              {s.name}
+              <FortuneIcon iconKey={s.iconKey} size={20} color={s.color} strokeWidth={1.3} />
+              <span>{s.name}</span>
             </Link>
           ))}
         </div>

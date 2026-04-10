@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Sparkles, BookOpen, Crown, User, LogIn } from 'lucide-react';
+import { Menu, X, BookOpen, Crown, User, LogIn } from 'lucide-react';
 import { fortuneServices } from '@/lib/fortunes';
 import { useAuth } from '@/contexts/AuthContext';
+import FortuneIcon from '@/components/FortuneIcon';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,10 +26,9 @@ export default function Header() {
           className="flex items-center gap-2 no-underline"
           style={{ color: 'var(--text-main)', textDecoration: 'none' }}
         >
-          <Sparkles size={22} color="#d4a5b6" />
           <span
-            className="text-lg font-bold gradient-text"
-            style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }}
+            className="text-lg font-bold font-mincho"
+            style={{ color: 'var(--text-main)', letterSpacing: '0.12em' }}
           >
             Oracle Portal
           </span>
@@ -102,16 +102,18 @@ export default function Header() {
                   key={s.id}
                   href={s.path}
                   onClick={() => setIsOpen(false)}
-                  className="text-center py-3 rounded-xl text-sm no-underline transition-all hover:scale-105"
+                  className="text-center py-3 rounded-xl text-sm no-underline transition-all hover:scale-105 flex flex-col items-center gap-1"
                   style={{
                     background: `${s.color}15`,
                     color: 'var(--text-main)',
                     textDecoration: 'none',
                     border: `1px solid ${s.color}30`,
+                    fontFamily: "'Shippori Mincho', serif",
+                    letterSpacing: '0.05em',
                   }}
                 >
-                  <span className="text-xl block mb-1">{s.icon}</span>
-                  {s.name}
+                  <FortuneIcon iconKey={s.iconKey} size={20} color={s.color} strokeWidth={1.3} />
+                  <span>{s.name}</span>
                 </Link>
               ))}
             </div>
