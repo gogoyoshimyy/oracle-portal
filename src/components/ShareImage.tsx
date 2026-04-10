@@ -58,10 +58,17 @@ export default function ShareImage({ serviceId, serviceName, title, headline }: 
   };
 
   const handleShareToX = () => {
-    const text = `${headline}\n\n#AI占い #OraclePortal #${serviceName.replace(/\s/g, '')}`;
+    const text = `${headline}\n\n#OraclePortal #${serviceName.replace(/\s/g, '')} #無料占い`;
     const url = 'https://oracle-portal.vercel.app';
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(tweetUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleShareToLine = () => {
+    const text = `${headline}\n\nOracle Portalで無料占い`;
+    const url = 'https://oracle-portal.vercel.app';
+    const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    window.open(lineUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleNativeShare = async () => {
@@ -195,6 +202,17 @@ export default function ShareImage({ serviceId, serviceName, title, headline }: 
                     <Download size={16} /> 保存
                   </button>
                   <button
+                    onClick={handleShareToLine}
+                    className="secondary-btn flex-1"
+                    style={{
+                      background: '#06C755',
+                      color: 'white',
+                      border: 'none',
+                    }}
+                  >
+                    💬 LINE
+                  </button>
+                  <button
                     onClick={handleShareToX}
                     className="secondary-btn flex-1"
                     style={{
@@ -203,7 +221,7 @@ export default function ShareImage({ serviceId, serviceName, title, headline }: 
                       border: 'none',
                     }}
                   >
-                    <XIcon size={14} /> Xで投稿
+                    <XIcon size={14} /> X
                   </button>
                 </div>
               </div>

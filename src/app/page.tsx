@@ -48,14 +48,14 @@ export default function Home() {
             letterSpacing: '0.05em',
           }}
         >
-          AIがあなたの<br />運命を読み解く
+          星々があなたの<br />運命を読み解く
         </h1>
 
         <p
           className="text-base md:text-lg leading-relaxed mb-2"
           style={{ color: 'var(--text-main)' }}
         >
-          9つのAI占いで、あなただけのパーソナル鑑定。
+          9つの占術で、あなただけのパーソナル鑑定。
         </p>
         <p
           className="text-sm md:text-base leading-relaxed mb-6"
@@ -97,10 +97,10 @@ export default function Home() {
             className="text-xl md:text-2xl font-bold mb-2"
             style={{ color: 'var(--text-main)', fontFamily: "'Zen Maru Gothic', sans-serif" }}
           >
-            ✨ 9つの占いの世界へ
+            ✨ 占いの間（ま）
           </h2>
           <p className="text-sm" style={{ color: 'var(--text-light)' }}>
-            気になる占いを選んでください
+            あなたを導く9つの占術
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -222,12 +222,12 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <span className="text-4xl block mb-3">🤖</span>
+              <span className="text-4xl block mb-3">🌌</span>
               <h3 className="text-base font-bold mb-2" style={{ color: 'var(--text-main)' }}>
-                Google Gemini 2.0搭載
+                伝統と最新技術の融合
               </h3>
               <p className="text-sm" style={{ color: 'var(--text-sub)' }}>
-                最新のAIが伝統占術を学習。あなただけのパーソナル鑑定をお届け。
+                古来の占術を最新の知性が読み解き、あなただけの鑑定をお届けします。
               </p>
             </div>
             <div>
@@ -246,7 +246,8 @@ export default function Home() {
       {/* Disclaimer */}
       <div className="text-center mt-2 max-w-2xl">
         <p className="text-xs" style={{ color: 'var(--text-light)' }}>
-          ※ Oracle Portalは Google Gemini 2.0 を活用したAI占いサービスです。エンターテインメントとしてお楽しみください。
+          ※ Oracle Portalは最新の知性を用いた占いサービスです。エンターテインメントとしてお楽しみください。
+          詳しくは<a href="/about" style={{ color: 'var(--text-light)', textDecoration: 'underline' }}>運営情報</a>をご覧ください。
         </p>
       </div>
     </div>

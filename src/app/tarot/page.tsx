@@ -67,7 +67,7 @@ export default function TarotPage() {
           { label: 'タロットリーディング', content: result.reading },
           { label: 'カードからのアドバイス', content: result.advice },
         ]}
-        shareText={`タロット占いの結果: ${result.headline}\n\nOracle Portal で無料AI占い`}
+        shareText={`タロット占いの結果: ${result.headline}\n\nOracle Portal で無料占い`}
         onReset={() => { setResult(null); setDrawnCards([]); setQuestion(''); }}
         currentServiceId="tarot"
       />
@@ -80,7 +80,7 @@ export default function TarotPage() {
         <div className="text-center mb-2">
           <h1 className="text-3xl font-bold gradient-text">🃏 タロット占い</h1>
           <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
-            AIがタロットカードを読み解きます
+            神秘のカードがあなたを導きます
           </p>
         </div>
       </motion.div>

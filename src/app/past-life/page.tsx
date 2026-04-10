@@ -67,7 +67,7 @@ export default function PastLifePage() {
         <div className="text-center mb-2">
           <h1 className="text-3xl font-bold gradient-text">🔮 前世占い</h1>
           <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
-            あなたの前世をAIが霊視します
+            あなたの前世を霊視します
           </p>
         </div>
       </motion.div>

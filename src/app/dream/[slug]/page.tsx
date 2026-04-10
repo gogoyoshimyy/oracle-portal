@@ -93,7 +93,7 @@ export default async function DreamKeywordPage({ params }: Props) {
           style={{ background: 'linear-gradient(135deg, rgba(181,164,214,0.1), rgba(212,165,182,0.1))' }}
         >
           <p className="text-sm mb-3" style={{ color: 'var(--text-main)' }}>
-            あなたの夢をAIがパーソナルに解読します
+            あなたの夢を詳しく解読します
           </p>
           <Link href="/dream" className="primary-btn" style={{ textDecoration: 'none' }}>
             無料で夢占いを試す →
@@ -155,16 +155,16 @@ export default async function DreamKeywordPage({ params }: Props) {
         </div>
       </div>
 
-      {/* AI Dream CTA */}
+      {/* Personal Dream CTA */}
       <div className="glass-panel mb-6 text-center">
         <h3 className="text-base font-bold mb-2" style={{ color: 'var(--text-main)' }}>
           あなたの{kw.title}をもっと詳しく読み解く
         </h3>
         <p className="text-xs mb-4" style={{ color: 'var(--text-light)' }}>
-          AIがあなたの夢の内容に合わせた、パーソナルな鑑定を無料でお届けします
+          あなたの夢の内容に合わせた、パーソナルな鑑定を無料でお届けします
         </p>
         <Link href="/dream" className="primary-btn" style={{ textDecoration: 'none' }}>
-          AIで夢占い →
+          夢を占う →
         </Link>
       </div>
 

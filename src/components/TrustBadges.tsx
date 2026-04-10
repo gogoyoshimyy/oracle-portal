@@ -13,10 +13,10 @@ export default function TrustBadges() {
         >
           <Sparkles size={24} color="#c47795" className="mx-auto mb-2" />
           <p className="text-xs font-bold m-0" style={{ color: 'var(--text-main)' }}>
-            Google Gemini 2.0
+            最新技術搭載
           </p>
           <p className="text-xs m-0 mt-1" style={{ color: 'var(--text-light)' }}>
-            最新AI搭載
+            高精度な鑑定
           </p>
         </div>
         <div

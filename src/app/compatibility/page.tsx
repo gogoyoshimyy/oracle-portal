@@ -59,7 +59,7 @@ export default function CompatibilityPage() {
         <div className="text-center mb-2">
           <h1 className="text-3xl font-bold gradient-text">💕 相性占い</h1>
           <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
-            二人の生年月日からAIが相性を鑑定
+            二人の生年月日から相性を鑑定します
           </p>
         </div>
       </motion.div>

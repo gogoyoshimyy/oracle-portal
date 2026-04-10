@@ -90,7 +90,7 @@ export default function PremiumPage() {
           </thead>
           <tbody>
             {[
-              ['9つのAI占い', '○', '○'],
+              ['9種類の占い', '○', '○'],
               ['広告表示', 'あり', 'なし'],
               ['鑑定の文字数', '通常', '3倍詳細'],
               ['履歴保存', '100件まで', '無制限'],
@@ -189,7 +189,7 @@ export default function PremiumPage() {
           <div>
             <h3 className="text-sm font-bold mb-1" style={{ color: '#b5a4d6' }}>Q. 無料版でも十分使えますか？</h3>
             <p className="text-xs leading-relaxed" style={{ color: 'var(--text-main)' }}>
-              はい。9つのAI占いはすべて無料でご利用いただけます。プレミアム版は「もっと詳しく知りたい」「広告なしで楽しみたい」方向けの追加機能です。
+              はい。9種類の占いはすべて無料でご利用いただけます。プレミアム版は「もっと詳しく知りたい」「広告なしで楽しみたい」方向けの追加機能です。
             </p>
           </div>
           <div>

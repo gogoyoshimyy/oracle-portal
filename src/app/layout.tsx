@@ -1,35 +1,36 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
+import AccessibilityPanel from '@/components/AccessibilityPanel';
 import { AuthProvider } from '@/contexts/AuthContext';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Oracle Portal - AI占いの館',
+    default: 'Oracle Portal - 占いの館',
     template: '%s | Oracle Portal',
   },
-  description: '9つのAI占いであなたの運命を読み解く。夢占い、タロット、数秘術、星座占い、相性占い、姓名判断、前世占い、誕生日占い、カラー占い。全て無料。',
-  keywords: ['占い', '無料占い', 'AI占い', '夢占い', 'タロット', '数秘術', '星座占い', '相性占い', '姓名判断'],
+  description: '9つの占いであなたの運命を読み解く。夢占い、タロット、数秘術、星座占い、相性占い、姓名判断、前世占い、誕生日占い、カラー占い。全て無料。',
+  keywords: ['占い', '無料占い', '夢占い', 'タロット', '数秘術', '星座占い', '相性占い', '姓名判断', '今日の運勢'],
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
-    siteName: 'Oracle Portal - AI占いの館',
-    title: 'Oracle Portal - AI占いの館',
-    description: '9つのAI占いであなたの運命を読み解く。全て無料。',
+    siteName: 'Oracle Portal - 占いの館',
+    title: 'Oracle Portal - 占いの館',
+    description: '9つの占いであなたの運命を読み解く。全て無料。',
     images: [
       {
-        url: '/api/og?service=dream&headline=AIがあなたの運命を読み解く&title=Oracle Portal',
+        url: '/api/og?service=dream&headline=星々があなたの運命を読み解く&title=Oracle Portal',
         width: 1200,
         height: 630,
-        alt: 'Oracle Portal - AI占いの館',
+        alt: 'Oracle Portal - 占いの館',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Oracle Portal - AI占いの館',
-    description: '9つのAI占いであなたの運命を読み解く。全て無料。',
-    images: ['/api/og?service=dream&headline=AIがあなたの運命を読み解く&title=Oracle Portal'],
+    title: 'Oracle Portal - 占いの館',
+    description: '9つの占いであなたの運命を読み解く。全て無料。',
+    images: ['/api/og?service=dream&headline=星々があなたの運命を読み解く&title=Oracle Portal'],
   },
   robots: {
     index: true,
@@ -61,8 +62,9 @@ export default function RootLayout({
             <a href="/privacy" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>プライバシーポリシー</a>
             <a href="/terms" style={{ color: 'var(--text-light)' }}>利用規約</a>
           </p>
-          <p>&copy; 2026 Oracle Portal - AI占いの館</p>
+          <p>&copy; 2026 Oracle Portal - 占いの館</p>
         </footer>
+        <AccessibilityPanel />
         </AuthProvider>
       </body>
     </html>

@@ -69,7 +69,7 @@ export default function NameFortunePage() {
         <div className="text-center mb-2">
           <h1 className="text-3xl font-bold gradient-text">✍️ 姓名判断</h1>
           <p className="text-sm mt-2" style={{ color: 'var(--text-light)' }}>
-            お名前の画数からAIが運勢を鑑定
+            お名前の画数から運勢を読み解きます
           </p>
         </div>
       </motion.div>

@@ -77,6 +77,25 @@ main, header, footer {
   z-index: 2;
 }
 
+/* アクセシビリティ: 動きを減らす設定 */
+.reduce-motion body::before {
+  animation: none !important;
+}
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+}
+
+/* OS設定でも反映 */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
 /* タイポグラフィ階層の改善 */
 h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.4; }
 h2 { font-size: clamp(1.25rem, 3vw, 1.5rem); line-height: 1.5; }

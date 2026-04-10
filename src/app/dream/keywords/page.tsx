@@ -7,7 +7,7 @@ import DreamKeywordSearch from '@/components/DreamKeywordSearch';
 
 export const metadata: Metadata = {
   title: '夢占い辞典 - 全キーワード一覧',
-  description: 'よく見る夢の意味を網羅した夢占い辞典。蛇の夢、追いかけられる夢、歯が抜ける夢など、あらゆる夢の意味をカテゴリ別に解説。AIによる無料鑑定も。',
+  description: 'よく見る夢の意味を網羅した夢占い辞典。蛇の夢、追いかけられる夢、歯が抜ける夢など、あらゆる夢の意味をカテゴリ別に解説。無料鑑定もご利用いただけます。',
   keywords: ['夢占い 一覧', '夢占い 辞典', '夢占い キーワード', '夢の意味', '夢占い 無料'],
   openGraph: {
     title: '夢占い辞典 - 全キーワード一覧 | Oracle Portal',
@@ -35,7 +35,7 @@ export default function DreamKeywordsListPage() {
         </p>
       </div>
 
-      {/* AI Oracle CTA */}
+      {/* Personal Oracle CTA */}
       <div
         className="rounded-3xl p-5 text-center"
         style={{
@@ -44,14 +44,14 @@ export default function DreamKeywordsListPage() {
         }}
       >
         <p className="text-sm mb-3" style={{ color: 'var(--text-main)' }}>
-          見た夢の内容を入力するだけで、AIがあなただけのパーソナル鑑定をお届けします
+          見た夢の内容を入力するだけで、あなただけのパーソナル鑑定をお届けします
         </p>
         <Link
           href="/dream"
           className="primary-btn inline-flex"
           style={{ textDecoration: 'none' }}
         >
-          🌙 AI夢占いを試す
+          🌙 夢占いを試す
         </Link>
       </div>
 
