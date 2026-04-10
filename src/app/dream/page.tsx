@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Moon, Stars, Sparkles } from 'lucide-react';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import { callFortuneAPI } from '@/lib/fortune-api';
 
 const emotions = [
   { id: 'alert', label: 'ハラハラ・焦り', color: '#ffadad' },
@@ -25,16 +26,7 @@ export default function DreamPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/fortune', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'dream',
-          input: { text: dreamText, emotion },
-        }),
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      const data = await callFortuneAPI('dream', { text: dreamText, emotion });
       setResult(data);
     } catch (e: any) {
       setError(e.message || '鑑定に失敗しました');

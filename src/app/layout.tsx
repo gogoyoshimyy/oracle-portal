@@ -42,6 +42,8 @@ export default function RootLayout({
         <footer className="text-center py-6 text-xs" style={{ color: 'var(--text-light)' }}>
           <p className="mb-2">※ 当サイトは電話占いサービス等のアフィリエイト広告を含みます</p>
           <p className="mb-2">
+            <a href="/history" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>占いの記録</a>
+            <a href="/premium" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>プレミアム</a>
             <a href="/about" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>運営情報</a>
             <a href="/privacy" style={{ color: 'var(--text-light)', marginRight: '1rem' }}>プライバシーポリシー</a>
             <a href="/terms" style={{ color: 'var(--text-light)' }}>利用規約</a>

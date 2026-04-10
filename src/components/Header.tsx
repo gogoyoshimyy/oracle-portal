@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, Sparkles, BookOpen, Crown } from 'lucide-react';
 import { fortuneServices } from '@/lib/fortunes';
 
 export default function Header() {
@@ -32,14 +32,32 @@ export default function Header() {
           </span>
         </Link>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2"
-          aria-label="メニューを開く"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-main)' }}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/history"
+            className="p-2 no-underline"
+            aria-label="占いの記録"
+            style={{ color: 'var(--text-main)', textDecoration: 'none' }}
+          >
+            <BookOpen size={20} />
+          </Link>
+          <Link
+            href="/premium"
+            className="p-2 no-underline"
+            aria-label="プレミアム"
+            style={{ color: '#d4a5b6', textDecoration: 'none' }}
+          >
+            <Crown size={20} />
+          </Link>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2"
+            aria-label="メニューを開く"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-main)' }}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {isOpen && (

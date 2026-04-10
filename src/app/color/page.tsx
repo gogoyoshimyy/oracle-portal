@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import { callFortuneAPI } from '@/lib/fortune-api';
 
 const COLORS = [
   { id: 'red', name: '赤', hex: '#e74c3c' },
@@ -40,16 +41,7 @@ export default function ColorPage() {
     setError(null);
     try {
       const colorNames = selected.map((id) => COLORS.find((c) => c.id === id)?.name || id);
-      const res = await fetch('/api/fortune', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'color',
-          input: { colors: colorNames },
-        }),
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      const data = await callFortuneAPI('color', { colors: colorNames });
       setResult(data);
     } catch (e: any) {
       setError(e.message || '鑑定に失敗しました');

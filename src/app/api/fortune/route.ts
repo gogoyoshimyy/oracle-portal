@@ -243,14 +243,25 @@ ${input.text}
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { type, input } = body;
+    const { type, input, premium } = body;
 
     const promptFn = PROMPTS[type];
     if (!promptFn) {
       return NextResponse.json({ error: `Unknown fortune type: ${type}` }, { status: 400 });
     }
 
-    const prompt = promptFn(input);
+    let prompt = promptFn(input);
+
+    // プレミアム会員向け：詳細鑑定モード
+    if (premium) {
+      prompt += `
+
+【プレミアム鑑定モード】
+- 通常の3倍の文字数で、より詳細に解説してください
+- 各セクションにさらに具体的な実例やアドバイスを追加してください
+- 「特別な気づき」というセクションを追加し、ユーザーの心に響く洞察を1つ加えてください`;
+    }
+
     const result = await generateJSON(prompt);
     return NextResponse.json(result);
   } catch (error) {

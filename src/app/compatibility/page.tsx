@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import { callFortuneAPI } from '@/lib/fortune-api';
 
 export default function CompatibilityPage() {
   const [p1Name, setP1Name] = useState('');
@@ -19,19 +20,10 @@ export default function CompatibilityPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/fortune', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'compatibility',
-          input: {
-            person1: { name: p1Name || 'Aさん', birthday: p1Birthday },
-            person2: { name: p2Name || 'Bさん', birthday: p2Birthday },
-          },
-        }),
+      const data = await callFortuneAPI('compatibility', {
+        person1: { name: p1Name || 'Aさん', birthday: p1Birthday },
+        person2: { name: p2Name || 'Bさん', birthday: p2Birthday },
       });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
       setResult(data);
     } catch (e: any) {
       setError(e.message || '鑑定に失敗しました');

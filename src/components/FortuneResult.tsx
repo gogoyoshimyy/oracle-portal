@@ -1,11 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Share2, RefreshCw, Sparkles, MessageCircle } from 'lucide-react';
+import { Share2, RefreshCw, Sparkles, MessageCircle, Heart, Download, BookOpen, Crown } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { fortuneServices } from '@/lib/fortunes';
 import AdBanner from './AdBanner';
 import PhoneFortuneAffiliate from './PhoneFortuneAffiliate';
+import { saveHistoryEntry, toggleFavorite } from '@/lib/history';
+import { isPremium, PREMIUM_PRICE } from '@/lib/premium';
+import { exportToPDF } from '@/lib/pdf-export';
 
 type AffiliateCategory = '恋愛' | '仕事' | '人生' | '夢' | '相性' | '前世' | '総合';
 
@@ -52,6 +56,28 @@ export default function FortuneResult({
   onReset,
   currentServiceId,
 }: FortuneResultProps) {
+  const [savedId, setSavedId] = useState<string | null>(null);
+  const [isFavorited, setIsFavorited] = useState(false);
+  const [premium, setPremium] = useState(false);
+
+  const service = fortuneServices.find((s) => s.id === currentServiceId);
+
+  // 自動的に履歴に保存
+  useEffect(() => {
+    if (!service) return;
+    const entry = saveHistoryEntry({
+      serviceId: currentServiceId,
+      serviceName: service.name,
+      serviceIcon: service.icon,
+      title,
+      headline,
+      result: { sections, keywords },
+      input: {},
+    });
+    setSavedId(entry.id);
+    setPremium(isPremium());
+  }, []);
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -63,6 +89,30 @@ export default function FortuneResult({
         alert('結果をコピーしました！');
       } catch {}
     }
+  };
+
+  const handleFavorite = () => {
+    if (!savedId) return;
+    toggleFavorite(savedId);
+    setIsFavorited(!isFavorited);
+  };
+
+  const handlePDFDownload = () => {
+    if (!premium) {
+      // プレミアム誘導
+      if (confirm('PDFダウンロードはプレミアム機能です。プレミアムプランの詳細を見ますか？')) {
+        window.location.href = '/premium';
+      }
+      return;
+    }
+    if (!service) return;
+    exportToPDF({
+      title,
+      serviceName: service.name,
+      headline,
+      sections,
+      date: new Date().toLocaleDateString('ja-JP'),
+    });
   };
 
   const otherServices = fortuneServices
@@ -147,7 +197,58 @@ export default function FortuneResult({
           </motion.div>
         ))}
 
-        <div className="mt-8 flex gap-3 justify-center flex-wrap">
+        {/* 自動保存通知 */}
+        {savedId && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center text-xs mb-4 flex items-center justify-center gap-1"
+            style={{ color: 'var(--text-light)' }}
+          >
+            <BookOpen size={12} /> 占い履歴に保存しました
+          </motion.div>
+        )}
+
+        {/* アクションボタン群 */}
+        <div className="mt-6 flex gap-2 justify-center flex-wrap">
+          <button
+            onClick={handleFavorite}
+            className="px-4 py-2 rounded-full text-sm font-bold cursor-pointer transition-all"
+            style={{
+              background: isFavorited ? 'linear-gradient(120deg, #ffadad, #d4a5b6)' : 'white',
+              color: isFavorited ? 'white' : 'var(--text-main)',
+              border: '1px solid #ddd',
+              fontFamily: "'Zen Maru Gothic', sans-serif",
+            }}
+          >
+            <Heart size={14} fill={isFavorited ? 'white' : 'none'} className="inline mr-1" />
+            {isFavorited ? 'お気に入り済み' : 'お気に入り'}
+          </button>
+
+          <button
+            onClick={handlePDFDownload}
+            className="px-4 py-2 rounded-full text-sm font-bold cursor-pointer transition-all relative"
+            style={{
+              background: 'white',
+              color: 'var(--text-main)',
+              border: '1px solid #ddd',
+              fontFamily: "'Zen Maru Gothic', sans-serif",
+            }}
+          >
+            <Download size={14} className="inline mr-1" />
+            PDF出力
+            {!premium && (
+              <span
+                className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full text-xs"
+                style={{ background: 'linear-gradient(120deg, #e8d5b5, #d4a5b6)', color: 'white' }}
+              >
+                <Crown size={10} className="inline" />
+              </span>
+            )}
+          </button>
+        </div>
+
+        <div className="mt-4 flex gap-3 justify-center flex-wrap">
           <button className="secondary-btn" onClick={onReset}>
             <RefreshCw size={16} /> もう一度占う
           </button>
@@ -156,6 +257,37 @@ export default function FortuneResult({
           </button>
         </div>
       </motion.div>
+
+      {/* プレミアム誘導 */}
+      {!premium && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-3xl p-5 text-center"
+          style={{
+            background: 'linear-gradient(135deg, #e8d5b5 0%, #d4a5b6 50%, #b5a4d6 100%)',
+            color: 'white',
+            boxShadow: '0 8px 24px rgba(212,165,182,0.3)',
+          }}
+        >
+          <Crown size={28} className="mx-auto mb-2" />
+          <h3 className="text-base font-bold mb-1">プレミアム会員でもっと深く</h3>
+          <p className="text-xs mb-3" style={{ opacity: 0.9 }}>
+            詳細鑑定（3倍の文字数）・PDF出力・広告非表示・無制限保存
+          </p>
+          <Link
+            href="/premium"
+            className="inline-block px-6 py-2 rounded-full text-sm font-bold no-underline"
+            style={{
+              background: 'white',
+              color: '#b5a4d6',
+              textDecoration: 'none',
+            }}
+          >
+            月¥{PREMIUM_PRICE} で始める →
+          </Link>
+        </motion.div>
+      )}
 
       <PhoneFortuneAffiliate context="result" category={SERVICE_CATEGORY[currentServiceId] || '総合'} />
 

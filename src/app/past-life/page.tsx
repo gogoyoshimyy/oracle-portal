@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import { callFortuneAPI } from '@/lib/fortune-api';
 
 const INTUITIONS = [
   { id: 'fire', label: '炎', icon: '🔥' },
@@ -27,20 +28,11 @@ export default function PastLifePage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/fortune', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'past-life',
-          input: {
-            birthday,
-            intuition: INTUITIONS.find((i) => i.id === intuition)?.label,
-            keyword,
-          },
-        }),
+      const data = await callFortuneAPI('past-life', {
+        birthday,
+        intuition: INTUITIONS.find((i) => i.id === intuition)?.label,
+        keyword,
       });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
       setResult(data);
     } catch (e: any) {
       setError(e.message || '鑑定に失敗しました');

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import { callFortuneAPI } from '@/lib/fortune-api';
 
 export default function BirthdayPage() {
   const [birthday, setBirthday] = useState('');
@@ -16,16 +17,7 @@ export default function BirthdayPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/fortune', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'birthday',
-          input: { birthday },
-        }),
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      const data = await callFortuneAPI('birthday', { birthday });
       setResult(data);
     } catch (e: any) {
       setError(e.message || '鑑定に失敗しました');

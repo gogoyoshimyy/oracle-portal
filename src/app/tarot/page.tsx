@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import FortuneResult from '@/components/FortuneResult';
 import LoadingOracle from '@/components/LoadingOracle';
+import { callFortuneAPI } from '@/lib/fortune-api';
 
 const THEMES = [
   '総合運', '恋愛運', '仕事運', '金運', '人間関係', '健康運', '今日の運勢',
@@ -41,16 +42,7 @@ export default function TarotPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/fortune', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'tarot',
-          input: { question: question || theme, cards: drawnCards },
-        }),
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      const data = await callFortuneAPI('tarot', { question: question || theme, cards: drawnCards });
       setResult(data);
     } catch (e: any) {
       setError(e.message || '鑑定に失敗しました');
