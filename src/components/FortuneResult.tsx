@@ -212,17 +212,35 @@ export default function FortuneResult({
           </motion.div>
         )}
 
-        {/* アクションボタン群 */}
-        <div className="mt-6 flex gap-2 justify-center flex-wrap">
-          {service && (
+        {/* シェア画像CTA - 目立つ大きなボタン */}
+        {service && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5 }}
+            className="mt-6 mb-2 p-5 rounded-3xl text-center"
+            style={{
+              background: 'linear-gradient(135deg, #2c1654 0%, #4a1942 50%, #1a1a3e 100%)',
+              border: '1px solid rgba(232,213,181,0.3)',
+            }}
+          >
+            <p className="text-sm font-bold mb-3" style={{ color: '#e8d5b5' }}>
+              📸 結果をシェア画像で保存・投稿
+            </p>
+            <p className="text-xs mb-4" style={{ color: 'rgba(255,255,255,0.7)' }}>
+              X / Instagram / LINE 用の素敵な画像が作れます
+            </p>
             <ShareImage
               serviceId={currentServiceId}
               serviceName={service.name}
               title={title}
               headline={headline}
             />
-          )}
+          </motion.div>
+        )}
 
+        {/* サブアクション */}
+        <div className="mt-4 flex gap-2 justify-center flex-wrap">
           <button
             onClick={handleFavorite}
             className="px-4 py-2 rounded-full text-sm font-bold cursor-pointer transition-all"
@@ -258,14 +276,25 @@ export default function FortuneResult({
               </span>
             )}
           </button>
+
+          <button
+            onClick={handleShare}
+            className="px-4 py-2 rounded-full text-sm font-bold cursor-pointer transition-all"
+            style={{
+              background: 'white',
+              color: 'var(--text-main)',
+              border: '1px solid #ddd',
+              fontFamily: "'Zen Maru Gothic', sans-serif",
+            }}
+          >
+            <Share2 size={14} className="inline mr-1" />
+            URL共有
+          </button>
         </div>
 
         <div className="mt-4 flex gap-3 justify-center flex-wrap">
           <button className="secondary-btn" onClick={onReset}>
             <RefreshCw size={16} /> もう一度占う
-          </button>
-          <button className="primary-btn" onClick={handleShare}>
-            <Share2 size={16} /> シェアする
           </button>
         </div>
       </motion.div>

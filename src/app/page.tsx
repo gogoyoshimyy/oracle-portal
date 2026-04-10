@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { fortuneServices } from '@/lib/fortunes';
 import { allDreamKeywords as dreamKeywords } from '@/lib/dream-keywords-all';
-import { Sparkles, TrendingUp, Star } from 'lucide-react';
+import { Sparkles, Star, Moon } from 'lucide-react';
 import DailyHoroscope from '@/components/DailyHoroscope';
 import DailyOmikuji from '@/components/DailyOmikuji';
+import TrustBadges from '@/components/TrustBadges';
 
 const POPULAR_IDS = ['dream', 'tarot', 'horoscope'];
 
@@ -11,41 +12,77 @@ export default function Home() {
   const popularDreamKeywords = dreamKeywords.slice(0, 12);
 
   return (
-    <div className="flex flex-col items-center gap-8 py-6">
-      {/* Hero */}
-      <section className="text-center max-w-2xl">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style={{ background: 'rgba(255,255,255,0.6)', border: '1px solid rgba(212,165,182,0.3)' }}>
-          <Sparkles size={14} color="#d4a5b6" />
-          <span className="text-xs font-bold" style={{ color: 'var(--text-main)', letterSpacing: '0.1em' }}>
-            完全無料・登録不要
+    <div className="flex flex-col items-center gap-10 py-6">
+      {/* Hero - 占いの館の入り口風 */}
+      <section className="text-center max-w-2xl py-6">
+        {/* 装飾 - 上部の星 */}
+        <div className="flex justify-center gap-3 mb-4 text-2xl opacity-70">
+          <span style={{ color: '#b08a3e' }}>✦</span>
+          <Moon size={20} color="#8b78b8" />
+          <span style={{ color: '#c47795' }}>✦</span>
+          <Star size={20} color="#b08a3e" fill="#b08a3e" />
+          <span style={{ color: '#8b78b8' }}>✦</span>
+        </div>
+
+        <div
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
+          style={{
+            background: 'rgba(255,255,255,0.7)',
+            border: '1px solid rgba(196,119,149,0.4)',
+          }}
+        >
+          <Sparkles size={14} color="#c47795" />
+          <span
+            className="text-xs font-bold"
+            style={{ color: 'var(--text-main)', letterSpacing: '0.1em' }}
+          >
+            完全無料・登録不要・即時鑑定
           </span>
         </div>
+
         <h1
-          className="text-4xl md:text-5xl font-bold gradient-text mb-4"
-          style={{ fontFamily: "'Zen Maru Gothic', sans-serif", lineHeight: '1.3' }}
+          className="text-4xl md:text-6xl font-bold gradient-text mb-4"
+          style={{
+            fontFamily: "'Zen Maru Gothic', sans-serif",
+            lineHeight: '1.3',
+            letterSpacing: '0.05em',
+          }}
         >
           AIがあなたの<br />運命を読み解く
         </h1>
-        <p className="text-sm md:text-base leading-relaxed mb-6" style={{ color: 'var(--text-light)' }}>
-          9つのAI占いで、あなただけのパーソナル鑑定をお届け。<br className="hidden md:block" />
+
+        <p
+          className="text-base md:text-lg leading-relaxed mb-2"
+          style={{ color: 'var(--text-main)' }}
+        >
+          9つのAI占いで、あなただけのパーソナル鑑定。
+        </p>
+        <p
+          className="text-sm md:text-base leading-relaxed mb-6"
+          style={{ color: 'var(--text-light)' }}
+        >
           夢、タロット、星座、相性、姓名判断、前世まで。
         </p>
 
-        {/* Social proof */}
-        <div className="flex justify-center gap-6 text-xs" style={{ color: 'var(--text-light)' }}>
-          <div className="flex items-center gap-1">
-            <Star size={14} color="#e8d5b5" fill="#e8d5b5" />
-            <span><strong style={{ color: 'var(--text-main)' }}>4.8</strong> / 5.0</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <TrendingUp size={14} color="#b5a4d6" />
-            <span><strong style={{ color: 'var(--text-main)' }}>9</strong> つの占い</span>
-          </div>
-          <div>
-            <span><strong style={{ color: 'var(--text-main)' }}>100%</strong> 無料</span>
-          </div>
+        {/* Quick CTA */}
+        <Link
+          href="/dream"
+          className="primary-btn inline-flex"
+          style={{ textDecoration: 'none' }}
+        >
+          🌙 今すぐ夢を占う
+        </Link>
+
+        {/* 装飾 - 下部の星 */}
+        <div className="flex justify-center gap-3 mt-8 text-xl opacity-70">
+          <span style={{ color: '#8b78b8' }}>✧</span>
+          <span style={{ color: '#c47795' }}>✦</span>
+          <span style={{ color: '#b08a3e' }}>✧</span>
         </div>
       </section>
+
+      {/* Trust Badges */}
+      <TrustBadges />
 
       {/* Daily omikuji - retention driver */}
       <DailyOmikuji />
@@ -55,9 +92,17 @@ export default function Home() {
 
       {/* Fortune services grid */}
       <section className="w-full max-w-3xl">
-        <h2 className="text-center text-base font-bold mb-4" style={{ color: 'var(--text-main)' }}>
-          ✨ 占いを選んでください
-        </h2>
+        <div className="text-center mb-6">
+          <h2
+            className="text-xl md:text-2xl font-bold mb-2"
+            style={{ color: 'var(--text-main)', fontFamily: "'Zen Maru Gothic', sans-serif" }}
+          >
+            ✨ 9つの占いの世界へ
+          </h2>
+          <p className="text-sm" style={{ color: 'var(--text-light)' }}>
+            気になる占いを選んでください
+          </p>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {fortuneServices.map((service) => {
             const isPopular = POPULAR_IDS.includes(service.id);
@@ -65,24 +110,26 @@ export default function Home() {
               <Link
                 key={service.id}
                 href={service.path}
-                className="glass-panel relative no-underline flex flex-col items-center gap-3 p-5 hover:scale-105 transition-transform"
-                style={{ textDecoration: 'none', color: 'var(--text-main)' }}
+                className="glass-panel relative no-underline flex flex-col items-center gap-3 p-6 hover:scale-105 transition-transform"
+                style={{ textDecoration: 'none', color: 'var(--text-main)', minHeight: '220px' }}
               >
                 {isPopular && (
                   <span
-                    className="absolute -top-2 -right-2 px-2 py-1 rounded-full text-xs font-bold"
+                    className="absolute -top-2 -right-2 px-3 py-1 rounded-full text-xs font-bold"
                     style={{
-                      background: 'linear-gradient(120deg, #d4a5b6, #b5a4d6)',
+                      background: 'linear-gradient(120deg, #c47795, #8b78b8)',
                       color: 'white',
-                      boxShadow: '0 2px 8px rgba(212,165,182,0.4)',
+                      boxShadow: '0 2px 8px rgba(196,119,149,0.5)',
                     }}
                   >
-                    人気
+                    ⭐ 人気
                   </span>
                 )}
-                <span className="text-4xl">{service.icon}</span>
+                <span className="text-5xl">{service.icon}</span>
                 <div className="text-center">
-                  <h3 className="text-base font-bold m-0">{service.name}</h3>
+                  <h3 className="text-base font-bold m-0" style={{ color: 'var(--text-main)' }}>
+                    {service.name}
+                  </h3>
                   <p
                     className="text-xs mt-1 m-0"
                     style={{ color: 'var(--text-light)', letterSpacing: '0.08em' }}
@@ -90,12 +137,15 @@ export default function Home() {
                     {service.subtitle}
                   </p>
                 </div>
-                <p className="text-xs leading-relaxed m-0 text-center" style={{ color: 'var(--text-light)' }}>
+                <p
+                  className="text-xs leading-relaxed m-0 text-center flex-1"
+                  style={{ color: 'var(--text-sub)' }}
+                >
                   {service.description}
                 </p>
                 <span
-                  className="text-xs font-bold mt-2"
-                  style={{ color: '#d4a5b6' }}
+                  className="text-sm font-bold mt-1"
+                  style={{ color: '#c47795' }}
                 >
                   占いを始める →
                 </span>
@@ -112,23 +162,28 @@ export default function Home() {
 
       {/* Popular dream keywords - SEO internal linking */}
       <section className="w-full max-w-3xl">
-        <h2 className="text-center text-base font-bold mb-2" style={{ color: 'var(--text-main)' }}>
-          🌙 よく検索される夢占い
-        </h2>
-        <p className="text-center text-xs mb-5" style={{ color: 'var(--text-light)' }}>
-          気になる夢のキーワードから、意味を読み解けます
-        </p>
+        <div className="text-center mb-5">
+          <h2
+            className="text-xl md:text-2xl font-bold mb-2"
+            style={{ color: 'var(--text-main)', fontFamily: "'Zen Maru Gothic', sans-serif" }}
+          >
+            🌙 よく見る夢の意味
+          </h2>
+          <p className="text-sm" style={{ color: 'var(--text-light)' }}>
+            150以上の夢占いキーワードから探せます
+          </p>
+        </div>
         <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
           {popularDreamKeywords.map((kw) => (
             <Link
               key={kw.slug}
               href={`/dream/${kw.slug}`}
-              className="text-center py-3 rounded-2xl text-xs no-underline transition-all hover:scale-105"
+              className="text-center py-4 rounded-2xl text-sm no-underline transition-all hover:scale-105"
               style={{
-                background: 'rgba(255,255,255,0.6)',
+                background: 'rgba(255,255,255,0.7)',
                 color: 'var(--text-main)',
                 textDecoration: 'none',
-                border: '1px solid rgba(212,165,182,0.15)',
+                border: '1px solid rgba(196,119,149,0.2)',
               }}
             >
               <span className="text-2xl block mb-1">{kw.emoji}</span>
@@ -136,13 +191,13 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <div className="text-center mt-4">
+        <div className="text-center mt-5">
           <Link
             href="/dream/keywords"
-            className="text-xs inline-flex items-center gap-1"
-            style={{ color: 'var(--text-light)' }}
+            className="text-sm inline-flex items-center gap-1 font-bold"
+            style={{ color: '#c47795', textDecoration: 'none' }}
           >
-            すべての夢占いを見る →
+            すべての夢占い辞典を見る →
           </Link>
         </div>
       </section>
@@ -150,28 +205,37 @@ export default function Home() {
       {/* Trust section */}
       <section className="w-full max-w-3xl">
         <div className="glass-panel">
-          <h2 className="text-center text-base font-bold mb-4" style={{ color: 'var(--text-main)' }}>
+          <h2
+            className="text-center text-xl font-bold mb-5"
+            style={{ color: 'var(--text-main)', fontFamily: "'Zen Maru Gothic', sans-serif" }}
+          >
             Oracle Portalが選ばれる理由
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-center">
             <div>
-              <span className="text-3xl block mb-2">🆓</span>
-              <h3 className="text-sm font-bold mb-1">完全無料</h3>
-              <p className="text-xs" style={{ color: 'var(--text-light)' }}>
+              <span className="text-4xl block mb-3">🆓</span>
+              <h3 className="text-base font-bold mb-2" style={{ color: 'var(--text-main)' }}>
+                完全無料
+              </h3>
+              <p className="text-sm" style={{ color: 'var(--text-sub)' }}>
                 登録もメール入力も不要。すべての占いが無料でご利用いただけます。
               </p>
             </div>
             <div>
-              <span className="text-3xl block mb-2">🤖</span>
-              <h3 className="text-sm font-bold mb-1">AI×占術</h3>
-              <p className="text-xs" style={{ color: 'var(--text-light)' }}>
+              <span className="text-4xl block mb-3">🤖</span>
+              <h3 className="text-base font-bold mb-2" style={{ color: 'var(--text-main)' }}>
+                Google Gemini 2.0搭載
+              </h3>
+              <p className="text-sm" style={{ color: 'var(--text-sub)' }}>
                 最新のAIが伝統占術を学習。あなただけのパーソナル鑑定をお届け。
               </p>
             </div>
             <div>
-              <span className="text-3xl block mb-2">⚡</span>
-              <h3 className="text-sm font-bold mb-1">即時鑑定</h3>
-              <p className="text-xs" style={{ color: 'var(--text-light)' }}>
+              <span className="text-4xl block mb-3">⚡</span>
+              <h3 className="text-base font-bold mb-2" style={{ color: 'var(--text-main)' }}>
+                即時鑑定
+              </h3>
+              <p className="text-sm" style={{ color: 'var(--text-sub)' }}>
                 数十秒で詳しい鑑定結果をお届け。いつでもどこでもご利用可能。
               </p>
             </div>
@@ -182,7 +246,7 @@ export default function Home() {
       {/* Disclaimer */}
       <div className="text-center mt-2 max-w-2xl">
         <p className="text-xs" style={{ color: 'var(--text-light)' }}>
-          ※ Oracle PortalはAIによる占いサービスです。エンターテインメントとしてお楽しみください。
+          ※ Oracle Portalは Google Gemini 2.0 を活用したAI占いサービスです。エンターテインメントとしてお楽しみください。
         </p>
       </div>
     </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Stars } from 'lucide-react';
+import { Stars, Sparkles, Moon } from 'lucide-react';
 import { useMemo } from 'react';
 import AdBanner from './AdBanner';
 
@@ -25,25 +25,104 @@ export default function LoadingOracle({ message }: LoadingOracleProps) {
 
   return (
     <div className="w-full max-w-xl mx-auto">
-      <div className="glass-panel text-center py-16">
+      <div
+        className="rounded-3xl text-center py-16 px-6 relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #2c1654 0%, #4a1942 50%, #1a1a3e 100%)',
+          border: '1px solid rgba(232,213,181,0.3)',
+          boxShadow: '0 8px 32px rgba(28, 22, 84, 0.25)',
+          minHeight: '400px',
+        }}
+      >
+        {/* 背景の浮遊する星々 */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${20 + (i % 3) * 25}%`,
+              fontSize: i % 2 === 0 ? 16 : 12,
+              color: i % 3 === 0 ? '#e8d5b5' : i % 3 === 1 ? '#d4a5b6' : '#b5a4d6',
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.3, 1, 0.3],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 3 + i * 0.3,
+              repeat: Infinity,
+              delay: i * 0.2,
+            }}
+          >
+            ✦
+          </motion.div>
+        ))}
+
+        {/* 中央の月 */}
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+          className="relative inline-block mb-6"
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 360],
+          }}
+          transition={{
+            scale: { duration: 2, repeat: Infinity },
+            rotate: { duration: 6, repeat: Infinity, ease: 'linear' },
+          }}
         >
-          <Stars size={48} color="#d4a5b6" className="mx-auto" />
+          <Moon size={64} color="#e8d5b5" fill="rgba(232,213,181,0.3)" />
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+          >
+            <Sparkles size={32} color="#d4a5b6" />
+          </motion.div>
         </motion.div>
-        <p className="mt-4" style={{ color: 'var(--text-main)' }}>
+
+        <motion.p
+          className="text-base font-bold mb-2"
+          style={{ color: '#e8d5b5' }}
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
           {message || 'あなたのために星々が物語を紡いでいます...'}
-        </p>
+        </motion.p>
+
+        {/* プログレスドット */}
+        <div className="flex justify-center gap-2 my-4">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              className="w-2 h-2 rounded-full"
+              style={{ background: '#e8d5b5' }}
+              animate={{
+                scale: [0.8, 1.4, 0.8],
+                opacity: [0.4, 1, 0.4],
+              }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
+            />
+          ))}
+        </div>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="mt-6 text-sm"
-          style={{ color: 'var(--text-light)' }}
+          transition={{ delay: 1 }}
+          className="text-xs mt-6 max-w-sm mx-auto"
+          style={{ color: 'rgba(255,255,255,0.6)', lineHeight: '1.7' }}
         >
-          {tip}
+          💫 {tip}
         </motion.p>
+      </div>
+
+      <div className="mt-4">
         <AdBanner />
       </div>
     </div>

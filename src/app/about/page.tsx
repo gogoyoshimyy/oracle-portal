@@ -24,22 +24,42 @@ export default function AboutPage() {
           <tbody>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.5)' }}>
               <td className="py-3 font-bold" style={{ width: '30%', color: 'var(--text-main)' }}>サイト名</td>
-              <td className="py-3" style={{ color: 'var(--text-light)' }}>Oracle Portal - AI占いの館</td>
+              <td className="py-3" style={{ color: 'var(--text-sub)' }}>Oracle Portal - AI占いの館</td>
             </tr>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.5)' }}>
               <td className="py-3 font-bold" style={{ color: 'var(--text-main)' }}>URL</td>
-              <td className="py-3" style={{ color: 'var(--text-light)' }}>https://oracle-portal.vercel.app</td>
+              <td className="py-3" style={{ color: 'var(--text-sub)' }}>https://oracle-portal.vercel.app</td>
             </tr>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.5)' }}>
               <td className="py-3 font-bold" style={{ color: 'var(--text-main)' }}>提供サービス</td>
-              <td className="py-3" style={{ color: 'var(--text-light)' }}>AI占い9種（無料）</td>
+              <td className="py-3" style={{ color: 'var(--text-sub)' }}>AI占い9種・夢占い辞典150種（すべて無料）</td>
             </tr>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.5)' }}>
-              <td className="py-3 font-bold" style={{ color: 'var(--text-main)' }}>使用技術</td>
-              <td className="py-3" style={{ color: 'var(--text-light)' }}>Next.js / Google Gemini API</td>
+              <td className="py-3 font-bold" style={{ color: 'var(--text-main)' }}>使用AIモデル</td>
+              <td className="py-3" style={{ color: 'var(--text-sub)' }}>Google Gemini 2.0 Flash</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.5)' }}>
+              <td className="py-3 font-bold" style={{ color: 'var(--text-main)' }}>技術スタック</td>
+              <td className="py-3" style={{ color: 'var(--text-sub)' }}>Next.js 16 / TypeScript / Tailwind CSS / Vercel</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.5)' }}>
+              <td className="py-3 font-bold" style={{ color: 'var(--text-main)' }}>運用開始</td>
+              <td className="py-3" style={{ color: 'var(--text-sub)' }}>2026年4月</td>
             </tr>
           </tbody>
         </table>
+
+        <h2 className="text-base font-bold mb-3" style={{ color: 'var(--text-main)', borderBottom: '2px solid rgba(212,165,182,0.3)', paddingBottom: '0.5rem' }}>
+          AI鑑定の仕組み
+        </h2>
+        <p className="text-sm leading-loose mb-3" style={{ color: 'var(--text-main)' }}>
+          Oracle Portalの鑑定は、Google社が提供する大規模言語モデル「Gemini 2.0 Flash」を活用しています。
+          各占術の伝統的な解釈方法と、ユーザーが入力された情報を組み合わせ、パーソナライズされた鑑定結果を生成します。
+        </p>
+        <p className="text-sm leading-loose mb-6" style={{ color: 'var(--text-main)' }}>
+          AI鑑定はあくまでエンターテインメントとして提供しており、占術の伝統と現代技術を融合させた新しい体験をお届けすることを目的としています。
+          人間の占い師による鑑定と異なり、24時間365日、どなたでも無料でご利用いただけます。
+        </p>
 
         <h2 className="text-base font-bold mb-3" style={{ color: 'var(--text-main)', borderBottom: '2px solid rgba(212,165,182,0.3)', paddingBottom: '0.5rem' }}>
           広告表示について
