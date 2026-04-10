@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { fortuneServices } from '@/lib/fortunes';
-import { dreamKeywords } from '@/lib/dream-keywords';
+import { allDreamKeywords as dreamKeywords } from '@/lib/dream-keywords-all';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://oracle-portal.vercel.app';

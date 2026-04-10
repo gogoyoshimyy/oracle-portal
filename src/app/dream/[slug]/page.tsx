@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { dreamKeywords } from '@/lib/dream-keywords';
+import { allDreamKeywords as dreamKeywords } from '@/lib/dream-keywords-all';
 import type { Metadata } from 'next';
 import PhoneFortuneAffiliate from '@/components/PhoneFortuneAffiliate';
 

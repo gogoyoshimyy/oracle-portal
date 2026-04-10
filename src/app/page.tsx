@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { fortuneServices } from '@/lib/fortunes';
-import { dreamKeywords } from '@/lib/dream-keywords';
+import { allDreamKeywords as dreamKeywords } from '@/lib/dream-keywords-all';
 import { Sparkles, TrendingUp, Star } from 'lucide-react';
 import DailyHoroscope from '@/components/DailyHoroscope';
 import DailyOmikuji from '@/components/DailyOmikuji';
@@ -138,7 +138,7 @@ export default function Home() {
         </div>
         <div className="text-center mt-4">
           <Link
-            href="/dream"
+            href="/dream/keywords"
             className="text-xs inline-flex items-center gap-1"
             style={{ color: 'var(--text-light)' }}
           >
