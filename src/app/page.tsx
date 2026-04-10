@@ -3,6 +3,7 @@ import { fortuneServices } from '@/lib/fortunes';
 import { dreamKeywords } from '@/lib/dream-keywords';
 import { Sparkles, TrendingUp, Star } from 'lucide-react';
 import DailyHoroscope from '@/components/DailyHoroscope';
+import DailyOmikuji from '@/components/DailyOmikuji';
 
 const POPULAR_IDS = ['dream', 'tarot', 'horoscope'];
 
@@ -45,6 +46,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Daily omikuji - retention driver */}
+      <DailyOmikuji />
 
       {/* Daily horoscope - retention driver */}
       <DailyHoroscope />
